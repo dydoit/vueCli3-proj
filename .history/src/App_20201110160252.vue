@@ -1,6 +1,13 @@
 <template>
   <div id="app">
-   <router-view />
+    <Aside></Aside>
+    <div class="container">
+      <Nav></Nav>
+      <div class="content-wrap">
+        <router-view />
+      </div>
+    </div>
+    
   </div>
 </template>
 
