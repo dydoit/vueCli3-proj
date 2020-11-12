@@ -1,6 +1,6 @@
 <template>
     <div>
-        <BreadCrumb class="breadcrumb-container" />
+        <Breadcrumb class="breadcrumb-container" />
     </div>
 </template>
 
