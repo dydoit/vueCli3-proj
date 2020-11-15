@@ -21,10 +21,16 @@
 <script>
 import AsideItem from './AsideItem.vue'
 export default {
+  name:'Aside',
   data() {
       return {
           isCollapse: false
       }
+  },
+  created () {
+    this.$bus.$on('toggleActive', (status)=>{
+      this.isCollapse=status==='zhankai'
+    })
   },
   computed: {
     routes(){

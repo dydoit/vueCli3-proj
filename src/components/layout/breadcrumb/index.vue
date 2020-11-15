@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import pathToRegexp from 'path-to-regexp'
+import * as pathToRegexp from 'path-to-regexp'
     export default {
         data() {
             return {
@@ -25,12 +25,13 @@ import pathToRegexp from 'path-to-regexp'
         },
         methods: {
             getBreadcrumb() {
-                let matched = this.$route.matched.filter(item => item.meta && item.meta.title)
+                let matched = this.$route.matched.filter(item => item.meta && item.meta.title&&item.meta.breadcrumb !== false)
+                // 根路由
                 const first = matched[0]
                 if(!this.isIndex(first)) {
                     matched = [{path: '/index',meta: {title: '首页'}}].concat(matched)
                 }
-                this.levelList = matched.filter(item => item.meta && item.meta.title)
+                this.levelList = matched
             },
             isIndex(route){
                 const name = route && route.name
@@ -40,20 +41,19 @@ import pathToRegexp from 'path-to-regexp'
                 return name.trim().toLowerCase() === 'Index'.toLowerCase()
             },
             handleLink(item) {
-                console.log('见鬼！！')
                 let {path,redirect} = item
+                // 若存在重定向，按重定向走
                 if(redirect) {
                     this.$router.push(redirect)
                     return
                 }
+                // 编译path，避免存在路径参数
                 this.$router.push(this.pathCompile(path))
             },
             pathCompile(path){
-                console.log(path)
-                // const { params } = this.$route
+                const { params } = this.$route
                 var toPath = pathToRegexp.compile(path)
-                console.log(toPath)
-                // return toPath(params)
+                return toPath(params)
             }
         },
     }
