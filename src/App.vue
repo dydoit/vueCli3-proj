@@ -5,8 +5,13 @@
 </template>
 
 <script>
+import {getUser} from "@/api";
   export default {
-    
+    created () {
+      getUser().then(res => {
+        console.log(res)
+      })
+    },
   }
 </script>
 

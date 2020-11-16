@@ -8,6 +8,10 @@ Vue.config.productionTip = false
 Vue.use(ElementUI);
 import NProgress from 'nprogress' //页面加载进度条
 import 'nprogress/nprogress.css'
+import './icons'
+// 总线
+const bus = new Vue()
+Vue.prototype.$bus = bus
 // 简单配置
 NProgress.inc(0.2)
 NProgress.configure({ easing: 'ease', speed: 500, showSpinner: false })

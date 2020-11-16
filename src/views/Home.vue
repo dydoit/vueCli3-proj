@@ -32,4 +32,8 @@ import Nav from '@/components/layout/Nav.vue'
     flex 1
     overflow hidden
     flex-direction column
+    .content-wrap
+        flex 1
+        padding 15px
+        overflow auto
 </style>
