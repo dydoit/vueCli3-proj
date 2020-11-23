@@ -279,7 +279,7 @@ import FormDiy from '@/views/index/components/FormDiy'
                     method:methodType,
                     url
                 })
-                this.obj.fields[i].options = data[dataKey]
+                this.obj.fields[i].__config__.options = data[dataKey]
             },
             setObjData(){
                 

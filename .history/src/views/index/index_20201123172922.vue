@@ -268,7 +268,7 @@ import FormDiy from '@/views/index/components/FormDiy'
             let arr  = this.obj.fields
             arr.map((elem,index) => {
                 if(elem.__config__&&elem.__config__.dataType==='dynamic') {
-                    this.getOptions(elem.__config__.method,elem.__config__.url,elem.__config__.dataKey,index)    
+                    this.getOptions(elem.__config__.method,elem.__config__.url,elem.__config__.dataKey,i)    
                 }
             })
 

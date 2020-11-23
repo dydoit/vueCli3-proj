@@ -266,20 +266,25 @@ import FormDiy from '@/views/index/components/FormDiy'
         },
         created () {
             let arr  = this.obj.fields
-            arr.map((elem,index) => {
+            let arr2 = arr.map(elem => {
                 if(elem.__config__&&elem.__config__.dataType==='dynamic') {
-                    this.getOptions(elem.__config__.method,elem.__config__.url,elem.__config__.dataKey,index)    
+                    return {
+                        ...elem,
+                        options:this.getOptions(elem.__config__.method,elem.__config__.url,elem.__config__.dataKey)    
+                    }   
                 }
+                return elem
             })
+            console.log(arr2)
 
         },
         methods: {
-            async getOptions(methodType,url,dataKey,i){
+            async getOptions(methodType,url,dataKey){
                 let {data} = await this.$axios({
                     method:methodType,
                     url
                 })
-                this.obj.fields[i].options = data[dataKey]
+                return data[dataKey]
             },
             setObjData(){
                 
