@@ -113,8 +113,8 @@ export default {
       handler(newVal){
         this.formConfCopy = newVal
         let fields = this.formConfCopy.fields
-        let formData = this[newVal.formModel]
-        this.initFormData(fields,formData)
+        let formData = this[newVal.formConf.formModel]
+        this.initFormData(fields, formData)
       }
     }
   },

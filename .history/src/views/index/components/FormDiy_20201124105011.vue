@@ -110,11 +110,10 @@ export default {
   },
   watch: {
     formConf:{
+      deep:true,
+      immediate:true,
       handler(newVal){
         this.formConfCopy = newVal
-        let fields = this.formConfCopy.fields
-        let formData = this[newVal.formModel]
-        this.initFormData(fields,formData)
       }
     }
   },

@@ -294,16 +294,25 @@ import FormDiy from '@/views/index/components/FormDiy'
                 })
                 let optionData =  data[dataKey]
                 let fields = this.obj.fields.map((item,index)=> {
-                  if(this.values[item.__vModel__]){
-                    item.__config__.defaultValue = this.values[item.__vModel__]
-                  }
                   if(index === i) {
                     return {
                       ...item,
+                      __config__:{
+                        ...item.__config__,
+                        defaultValue:this.values[item.__vModel__]?this.values[item.__vModel__]:''
+                      },
                       options:optionData
                     }
+                  }else {
+                    return {
+                      ...item,
+                       __config__:{
+                        ...item.__config__,
+                        defaultValue:this.values[item.__vModel__]?this.values[item.__vModel__]:''
+                      },
+                    }
                   }
-                  return item
+                  
                 })
                 this.obj = {
                   ...this.obj,

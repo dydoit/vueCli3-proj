@@ -258,15 +258,14 @@ const json = {
   "formBtns": true
 }
 const values = {
-  field103:'李四',
+  field103:'张三',
   field101:'18565125218'
 }
 import FormDiy from '@/views/index/components/FormDiy'
     export default {
         data() {
             return {
-                obj:json,
-                values
+                obj:json
             }
         },
         created () {
@@ -278,13 +277,6 @@ import FormDiy from '@/views/index/components/FormDiy'
                   this.getOptions(elem.__config__.method,elem.__config__.url,elem.__config__.dataKey,index)    
                 }
             })
-            setTimeout(()=>{
-              this.obj.fields.forEach(val=> {
-                if(values[val.__vModel__]) {
-                  val.__config__.defaultValue = values[val.__vModel__]
-                }
-              })
-            },2000)
         },
         methods: {
            async getOptions(methodType,url,dataKey,i){
@@ -294,9 +286,6 @@ import FormDiy from '@/views/index/components/FormDiy'
                 })
                 let optionData =  data[dataKey]
                 let fields = this.obj.fields.map((item,index)=> {
-                  if(this.values[item.__vModel__]){
-                    item.__config__.defaultValue = this.values[item.__vModel__]
-                  }
                   if(index === i) {
                     return {
                       ...item,

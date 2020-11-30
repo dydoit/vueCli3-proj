@@ -97,38 +97,9 @@ function buildListeners(scheme) {
 
   return listeners;
 }
-export default {
-  components: {
-    render,
-  },
-  created() {},
-  props: {
-    formConf: {
-      type: Object,
-      required: true,
-    },
-  },
-  watch: {
-    formConf:{
-      handler(newVal){
-        this.formConfCopy = newVal
-        let fields = this.formConfCopy.fields
-        let formData = this[newVal.formModel]
-        this.initFormData(fields,formData)
-      }
-    }
-  },
-  data() {
-    const data = {
-      formConfCopy: deepClone(this.formConf),
-      [this.formConf.formModel]: {},
-      [this.formConf.formRules]: {},
-    };
-    this.initFormData(data.formConfCopy.fields, data[this.formConf.formModel]);
-    this.buildRules(data.formConfCopy.fields, data[this.formConf.formRules]);
-    return data;
-  },
-  methods: {
+// 组装methods
+function buildMethods() {
+  return {
     initFormData(componentList, formData) {
       componentList.forEach((cur) => {
         const config = cur.__config__;
@@ -174,7 +145,30 @@ export default {
         return true;
       });
     },
+  };
+}
+export default {
+  components: {
+    render,
   },
+  created() {},
+  props: {
+    formConf: {
+      type: Object,
+      required: true,
+    },
+  },
+  data() {
+    const data = {
+      formConfCopy: deepClone(this.formConf),
+      [this.formConf.formModel]: {},
+      [this.formConf.formRules]: {},
+    };
+    this.initFormData(data.formConfCopy.fields, data[this.formConf.formModel]);
+    this.buildRules(data.formConfCopy.fields, data[this.formConf.formRules]);
+    return data;
+  },
+  methods: buildMethods(this),
   render(h) {
     return renderFrom.call(this, h);
   },

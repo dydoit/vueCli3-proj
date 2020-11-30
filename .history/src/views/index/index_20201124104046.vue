@@ -258,7 +258,7 @@ const json = {
   "formBtns": true
 }
 const values = {
-  field103:'李四',
+  field103:'张三',
   field101:'18565125218'
 }
 import FormDiy from '@/views/index/components/FormDiy'
@@ -294,9 +294,6 @@ import FormDiy from '@/views/index/components/FormDiy'
                 })
                 let optionData =  data[dataKey]
                 let fields = this.obj.fields.map((item,index)=> {
-                  if(this.values[item.__vModel__]){
-                    item.__config__.defaultValue = this.values[item.__vModel__]
-                  }
                   if(index === i) {
                     return {
                       ...item,

@@ -114,7 +114,7 @@ export default {
         this.formConfCopy = newVal
         let fields = this.formConfCopy.fields
         let formData = this[newVal.formModel]
-        this.initFormData(fields,formData)
+        console.log(formData)
       }
     }
   },

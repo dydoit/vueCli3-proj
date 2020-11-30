@@ -257,58 +257,35 @@ const json = {
   "span": 24,
   "formBtns": true
 }
-const values = {
-  field103:'李四',
-  field101:'18565125218'
-}
 import FormDiy from '@/views/index/components/FormDiy'
     export default {
         data() {
             return {
-                obj:json,
-                values
+                obj:json
             }
         },
         created () {
             let arr  = this.obj.fields
             let promiseAll = []
-            let optionsData= []
             arr.forEach((elem,index) => {
                 if(elem.__config__&&elem.__config__.dataType==='dynamic') {
-                  this.getOptions(elem.__config__.method,elem.__config__.url,elem.__config__.dataKey,index)    
+                    promiseAll.push(this.getOptions(elem.__config__.method,elem.__config__.url,elem.__config__.dataKey,index) )      
                 }
             })
-            setTimeout(()=>{
-              this.obj.fields.forEach(val=> {
-                if(values[val.__vModel__]) {
-                  val.__config__.defaultValue = values[val.__vModel__]
-                }
-              })
-            },2000)
+            console.log(promiseAll)
+
         },
         methods: {
-           async getOptions(methodType,url,dataKey,i){
-                let {data} = await this.$axios({
+           getOptions(methodType,url,dataKey,i){
+                return this.$axios({
                     method:methodType,
                     url
                 })
-                let optionData =  data[dataKey]
-                let fields = this.obj.fields.map((item,index)=> {
-                  if(this.values[item.__vModel__]){
-                    item.__config__.defaultValue = this.values[item.__vModel__]
-                  }
-                  if(index === i) {
-                    return {
-                      ...item,
-                      options:optionData
-                    }
-                  }
-                  return item
-                })
-                this.obj = {
-                  ...this.obj,
-                  fields
-                }
+                // let {data} = await 
+                // this.obj.fields[i].options = data[dataKey]
+            },
+            setObjData(){
+                
             }
         },
         components: {

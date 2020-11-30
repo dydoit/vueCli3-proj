@@ -5,12 +5,12 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/login',
-    component: () => import('@/views/login'),
-    hidden: true
+    component: () => import('@/views/login')
   },
   {
     path: '/form-generator',
-    component: () => import('@/views/form-generator')
+    component: () => import('@/views/form-generator'),
+    hidden: true
   },
   {
     path: '/',

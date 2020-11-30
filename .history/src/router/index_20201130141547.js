@@ -10,7 +10,8 @@ const routes = [
   },
   {
     path: '/form-generator',
-    component: () => import('@/views/form-generator')
+    component: () => import('@/views/form-generator'),
+    hidden: true
   },
   {
     path: '/',
